@@ -10,7 +10,7 @@ function AddTask() {
         if(!title) return alert("title required")
         if(!description) return alert("description required")
         console.log(title,description)
-        let data={title,description}
+        let data={title:title,description:description}
         fetch("http://localhost:4000/createEditTask",{
             method:"PUT",
             headers:{

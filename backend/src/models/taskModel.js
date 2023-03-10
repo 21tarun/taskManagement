@@ -6,7 +6,7 @@ const task= mongoose.Schema({
     description:String,
     status:{
         type:String,
-        enum:['[Open','In-Progress','Completed'],
+        enum:['Open','In-Progress','Completed'],
         default:'Open'
     }
 },{timestamps:true})

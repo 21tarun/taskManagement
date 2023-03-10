@@ -66,6 +66,27 @@ function Tasks() {
         })
 
     }
+    function dragToDelete(e,title){
+        let data={title:title}
+        fetch("http://localhost:4000/delete",{
+            method:"DELETE",
+            headers:{
+                'Content-type': 'application/json'
+            },
+            body:JSON.stringify(data)
+        })
+        .then((result)=>result.json())
+        .then(res=>{
+            console.log(res)
+            if(res.status==true){
+                alert('Task deleted')
+                window.location.reload(true);
+            }
+            else return alert(res.message)
+            
+        })
+
+    }
 
   return (
     
@@ -102,7 +123,7 @@ function Tasks() {
         <div className='completed'>
             {
                 completed.map(x=>
-                    <li draggable onDragOver={()=>{}} >
+                    <li draggable onDragEnd={(e)=>dragToDelete(e,x.title)} >
                         <h4>{x.title}</h4><br/>
                         <p>{x.description}</p>
                     </li>

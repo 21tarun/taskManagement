@@ -19,6 +19,12 @@ router.put("/createEditTask",async function(req,res){
     res.status(201).send({status:true,message:"Successfully created",data:saveData})
 })
 
+router.delete("/delete",async function(req,res){
+    let data=req.body
+    await taskModel.findOneAndDelete({title:data.title})
+    res.status(200).send({status:true,message:"deleted successfully"})
+})
+
 router.get('/getTasks',async function(req,res){
     let tasks= await taskModel.find()
     let openTasks=[]
